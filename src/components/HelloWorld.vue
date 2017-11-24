@@ -17,6 +17,10 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
+    <input type="number" v-model="modd">
+    <router-link :to="'/my/'+modd">Go to user with link</router-link>
+    <button @click="goMy">Go to user with router.push</button>
+    <button @click="goMy">Go to user with router.push and name</button>
   </div>
 </template>
 
@@ -25,7 +29,15 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: '琴理工作室',
+      modd: 0,
+      target: '() => { return this.length }'
+    }
+  },
+  methods: {
+    goMy () { this.$router.push({path: `/my/${this.modd}`}) },
+    goMyByName () {
+      this.$router.push({name: 'hello-my', parmas: { id: this.modd }})
     }
   }
 }
